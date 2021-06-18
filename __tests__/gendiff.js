@@ -8,8 +8,21 @@ const file1 = join(__dirname, '..', '__fixtures__', 'file1.json');
 const file2 = join(__dirname, '..', '__fixtures__', 'file2.json');
 
 describe('flat json comparison', () => {
+  const diff = gendiff(file1, file2);
+
   test('correctly compares unchanged field', () => {
-    const diff = gendiff(file1, file2);
     expect(diff).toContain('   host: hexlet.io');
+  });
+
+  test('correctly compares changed field', () => {
+    expect(diff).toContain(' - timeout: 50');
+    expect(diff).toContain(' + timeout: 20');
+  });
+
+  test('detects new field', () => {
+  });
+
+  test('detects removed field', () => {
+    expect(diff).toContain(' - proxy: 123.234.53.22');
   });
 });
