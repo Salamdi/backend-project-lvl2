@@ -1,5 +1,6 @@
 import { readFileSync } from 'fs';
 import { resolve } from 'path';
+import _ from 'lodash';
 
 export default (filepath1, filepath2) => {
   const fileContent1 = readFileSync(
@@ -21,8 +22,8 @@ export default (filepath1, filepath2) => {
       .keys(union)
       .reduce((res, key) => {
         if (json1[key] === json2[key]) return `${res}   ${key}: ${union[key]}\n`;
-        if (json1[key] !== undefined && json2[key] === undefined) return `${res} - ${key}: ${union[key]}\n`;
-        if (json1[key] === undefined && json2[key] !== undefined) return `${res} + ${key}: ${union[key]}\n`;
+        if (!_.isUndefined(json1[key]) && json2[key] === undefined) return `${res} - ${key}: ${union[key]}\n`;
+        if (_.isUndefined(json1[key]) && json2[key] !== undefined) return `${res} + ${key}: ${union[key]}\n`;
         if (json1[key] !== json2[key]) {
           return `${res} - ${key}: ${json1[key]}\n + ${key}: ${json2[key]}\n`;
         }
