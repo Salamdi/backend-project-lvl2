@@ -1,5 +1,5 @@
 import { readFileSync } from 'fs';
-import { resolve } from 'path';
+import { resolve, extname } from 'path';
 import _ from 'lodash';
 
 export default (filepath1, filepath2) => {
@@ -11,8 +11,8 @@ export default (filepath1, filepath2) => {
     resolve(process.cwd(), filepath2),
     'utf8',
   );
-  const dotPosition = filepath1.lastIndexOf('.');
-  const extension = filepath1.substr(dotPosition);
+
+  const extension = extname(filepath1);
 
   if (extension === '.json') {
     const json1 = JSON.parse(fileContent1);

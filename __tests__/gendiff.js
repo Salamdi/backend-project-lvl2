@@ -20,6 +20,7 @@ describe('flat json comparison', () => {
   });
 
   test('detects new field', () => {
+    expect(diff).toContain(' + verbose: true');
   });
 
   test('detects removed field', () => {
