@@ -38,5 +38,5 @@ describe('parser works with json and yml', () => {
   test('yaml and yml should be parsed the same', () => {
     expect(objectFromYaml1).toEqual(objectFromYml1);
     expect(objectFromYaml2).toEqual(objectFromYml2);
-  })
+  });
 });
