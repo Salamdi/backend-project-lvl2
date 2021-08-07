@@ -12,16 +12,16 @@ const gendiff = (obj1, obj2, depth = 0) => {
       return diff;
     }
     if (!_.isUndefined(obj1[key]) && _.isUndefined(obj2[key])) {
-      diff[` - ${key}`] = obj1[key];
+      diff[`- ${key}`] = obj1[key];
       return diff;
     }
     if (_.isUndefined(obj1[key]) && !_.isUndefined(obj2[key])) {
-      diff[` + ${key}`] = obj2[key];
+      diff[`+ ${key}`] = obj2[key];
       return diff;
     }
     if (obj1[key] !== obj2[key]) {
-      diff[` - ${key}`] = obj1[key];
-      diff[` + ${key}`] = obj2[key];
+      diff[`- ${key}`] = obj1[key];
+      diff[`+ ${key}`] = obj2[key];
       return diff;
     }
   }, {});
