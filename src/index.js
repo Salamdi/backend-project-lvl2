@@ -2,8 +2,9 @@ import { readFileSync } from 'fs';
 import { resolve, extname } from 'path';
 import makeParser from './parser.js';
 import gendiff from './gendiff.js';
+import makeFormatter, { STYLISH } from './formats/index.js';
 
-export default (filepath1, filepath2) => {
+export default (filepath1, filepath2, format) => {
   const fileContent1 = readFileSync(
     resolve(process.cwd(), filepath1),
     'utf8',
@@ -18,6 +19,8 @@ export default (filepath1, filepath2) => {
   const parse = makeParser(extension);
   const obj1 = parse(fileContent1);
   const obj2 = parse(fileContent2);
+  const diff = gendiff(obj1, obj2);
+  const formatOutput = makeFormatter(format);
 
-  return gendiff(obj1, obj2);
+  return formatOutput(diff);
 };
