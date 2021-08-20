@@ -2,7 +2,7 @@ import { readFileSync } from 'fs';
 import { resolve, extname } from 'path';
 import makeParser from './parser.js';
 import gendiff from './gendiff.js';
-import makeFormatter, { STYLISH } from './formats/index.js';
+import makeFormatter from './formats/index.js';
 
 export default (filepath1, filepath2, format) => {
   const fileContent1 = readFileSync(

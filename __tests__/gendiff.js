@@ -1,8 +1,8 @@
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
+import { readFileSync } from 'fs';
 import gendiff from '../src/gendiff';
 import stylish from '../src/formats/stylish';
-import { readFileSync } from 'fs';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -24,5 +24,5 @@ describe('nested objects comparison', () => {
 
   test('stylish format works correctly', () => {
     expect(stylish(diff)).toBe(stylishFormat);
-  })
+  });
 });
