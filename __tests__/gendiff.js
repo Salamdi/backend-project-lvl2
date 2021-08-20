@@ -16,7 +16,7 @@ describe('nested objects comparison', () => {
   const json1 = JSON.parse(readFileSync(file1));
   const json2 = JSON.parse(readFileSync(file2));
   const diff = gendiff(json1, json2);
-  const stylishFormat = readFileSync(stylishFormatPath, 'utf-8');
+  const stylishFormat = readFileSync(stylishFormatPath, 'utf-8').trim();
 
   test('correctly calculates difference of nested objects', () => {
     expect(diff).toEqual(expectedDiff);
