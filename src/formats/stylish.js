@@ -1,5 +1,7 @@
 import _ from 'lodash';
-import { REMOVED, ADDED, UPDATED, TYPE_KEY, OLD_KEY, NEW_KEY } from '../constants.js';
+import {
+  TYPE_KEY, OLD_KEY, NEW_KEY,
+} from '../constants.js';
 
 const internalToJson = (obj) => _.reduce(obj, (json, value, key) => {
   if (!_.isObject(value)) {

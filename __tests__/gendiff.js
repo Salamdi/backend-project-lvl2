@@ -25,5 +25,5 @@ describe('nested objects comparison', () => {
 
   test('plain format works correctly', () => {
     expect(plain(diff)).toBe(plainFormat);
-  })
+  });
 });
