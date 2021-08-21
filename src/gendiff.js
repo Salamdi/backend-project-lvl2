@@ -1,4 +1,5 @@
 import _ from 'lodash';
+import { REMOVED, ADDED, UPDATED, TYPE_KEY, NEW_KEY, OLD_KEY } from './constants.js';
 
 const gendiff = (obj1, obj2, depth = 0) => {
   const keys = _.flow(
@@ -14,16 +15,30 @@ const gendiff = (obj1, obj2, depth = 0) => {
       return { ...diff, [key]: obj2[key] };
     }
     if (!_.isUndefined(obj1[key]) && _.isUndefined(obj2[key])) {
-      return { ...diff, [`- ${key}`]: obj1[key] };
+      return {
+        ...diff, [key]: {
+          [TYPE_KEY]: REMOVED,
+          [OLD_KEY]: obj1[key],
+        }
+      };
     }
     if (_.isUndefined(obj1[key]) && !_.isUndefined(obj2[key])) {
-      return { ...diff, [`+ ${key}`]: obj2[key] };
+      return {
+        ...diff,
+        [key]: {
+          [TYPE_KEY]: ADDED,
+          [NEW_KEY]: obj2[key],
+        }
+      };
     }
     if (obj1[key] !== obj2[key]) {
       return {
         ...diff,
-        [`- ${key}`]: obj1[key],
-        [`+ ${key}`]: obj2[key],
+        [key]: {
+          [TYPE_KEY]: UPDATED,
+          [OLD_KEY]: obj1[key],
+          [NEW_KEY]: obj2[key],
+        },
       };
     }
     return diff;
