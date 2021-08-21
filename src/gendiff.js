@@ -3,6 +3,14 @@ import {
   REMOVED, ADDED, UPDATED, TYPE_KEY, NEW_KEY, OLD_KEY,
 } from './constants.js';
 
+const toJSON = function() {
+  return {
+    type: this[TYPE_KEY],
+    removed: this[OLD_KEY],
+    added: this[NEW_KEY],
+  };
+}
+
 const gendiff = (obj1, obj2, depth = 0) => {
   const keys = _.flow(
     _.concat,
@@ -22,6 +30,7 @@ const gendiff = (obj1, obj2, depth = 0) => {
         [key]: {
           [TYPE_KEY]: REMOVED,
           [OLD_KEY]: obj1[key],
+          toJSON,
         },
       };
     }
@@ -31,6 +40,7 @@ const gendiff = (obj1, obj2, depth = 0) => {
         [key]: {
           [TYPE_KEY]: ADDED,
           [NEW_KEY]: obj2[key],
+          toJSON,
         },
       };
     }
@@ -41,6 +51,7 @@ const gendiff = (obj1, obj2, depth = 0) => {
           [TYPE_KEY]: UPDATED,
           [OLD_KEY]: obj1[key],
           [NEW_KEY]: obj2[key],
+          toJSON,
         },
       };
     }
