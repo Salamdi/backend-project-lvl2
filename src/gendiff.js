@@ -3,7 +3,7 @@ import {
   REMOVED, ADDED, UPDATED, TYPE_KEY, NEW_KEY, OLD_KEY,
 } from './constants.js';
 
-const toJSON = function() {
+function toJSON() {
   return {
     type: this[TYPE_KEY],
     removed: this[OLD_KEY],
