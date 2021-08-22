@@ -1,62 +1,62 @@
 {
   "common": {
     "follow": {
-      "type": "added",
-      "added": false
+      "__type": "added",
+      "__added": false
     },
     "setting1": "Value 1",
     "setting2": {
-      "type": "removed",
-      "removed": 200
+      "__type": "removed",
+      "__removed": 200
     },
     "setting3": {
-      "type": "updated",
-      "removed": true,
-      "added": null
+      "__type": "updated",
+      "__removed": true,
+      "__added": null
     },
     "setting4": {
-      "type": "added",
-      "added": "blah blah"
+      "__type": "added",
+      "__added": "blah blah"
     },
     "setting5": {
-      "type": "added",
-      "added": {
+      "__type": "added",
+      "__added": {
         "key5": "value5"
       }
     },
     "setting6": {
       "doge": {
         "wow": {
-          "type": "updated",
-          "removed": "",
-          "added": "so much"
+          "__type": "updated",
+          "__removed": "",
+          "__added": "so much"
         }
       },
       "key": "value",
       "ops": {
-        "type": "added",
-        "added": "vops"
+        "__type": "added",
+        "__added": "vops"
       }
     }
   },
   "group1": {
     "baz": {
-      "type": "updated",
-      "removed": "bas",
-      "added": "bars"
+      "__type": "updated",
+      "__removed": "bas",
+      "__added": "bars"
     },
     "foo": "bar",
     "nest": {
-      "type": "updated",
-      "removed": {
+      "__type": "updated",
+      "__removed": {
         "key": "value"
       },
-      "added": "str"
+      "__added": "str"
     }
   },
   "group2": {
-    "type": "removed",
-    "removed": {
+    "__type": "removed",
+    "__removed": {
       "abc": 12345,
       "deep": {
         "id": 45
@@ -64,8 +64,8 @@
     }
   },
   "group3": {
-    "type": "added",
-    "added": {
+    "__type": "added",
+    "__added": {
       "deep": {
         "id": {
           "number": 45

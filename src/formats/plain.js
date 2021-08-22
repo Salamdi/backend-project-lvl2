@@ -14,10 +14,10 @@ const internalToPlain = (internalDiff, prefix = '') => _.flatMap(internalDiff, (
     return internalToPlain(value, path);
   }
 
-  let added = _.isString(value[NEW_KEY]) ? `'${value[NEW_KEY]}'` : value[NEW_KEY];
-  added = _.isObjectLike(added) ? '[complex value]' : added;
-  let removed = _.isString(value[OLD_KEY]) ? `'${value[OLD_KEY]}'` : value[OLD_KEY];
-  removed = _.isObjectLike(removed) ? '[complex value]' : removed;
+  const quotedAddedPropertyIfString = _.isString(value[NEW_KEY]) ? `'${value[NEW_KEY]}'` : value[NEW_KEY];
+  const added = _.isObjectLike(value[NEW_KEY]) ? '[complex value]' : quotedAddedPropertyIfString;
+  const quotedRemovedPropertyIfString = _.isString(value[OLD_KEY]) ? `'${value[OLD_KEY]}'` : value[OLD_KEY];
+  const removed = _.isObjectLike(value[OLD_KEY]) ? '[complex value]' : quotedRemovedPropertyIfString;
 
   if (value[TYPE_KEY] === REMOVED) {
     return `Property '${path}' was removed`;
