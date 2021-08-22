@@ -8,6 +8,7 @@ export const JSON_FORMAT = 'json';
 
 export default (format) => {
   switch (format) {
+    case '':
     case (STYLISH): {
       return stylish;
     }
