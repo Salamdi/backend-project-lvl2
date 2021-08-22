@@ -18,9 +18,9 @@ const internalToJson = (obj) => _.reduce(obj, (json, value, key) => {
 }, {});
 
 const formatStylish = (obj) => JSON.stringify(internalToJson(obj), null, 4)
-  .replaceAll(',', '')
-  .replaceAll('"', '')
-  .replaceAll('    + ', '  + ')
-  .replaceAll('    - ', '  - ');
+  .replace(/[,"]/g, '')
+  .split('\n')
+  .map(line => /[+-]\s/.test(line) ? line.substring(2) : line)
+  .join('\n');
 
 export default formatStylish;
