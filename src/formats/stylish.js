@@ -3,7 +3,7 @@ import {
   TYPE_KEY, OLD_KEY, NEW_KEY,
 } from '../constants.js';
 
-const internalToJson = (obj) => _.reduce(obj, (json, value, key) => {
+const internalToJson = (internalDiff) => _.reduce(internalDiff, (json, value, key) => {
   if (!_.isObject(value)) {
     return { ...json, [key]: value };
   }
@@ -17,7 +17,7 @@ const internalToJson = (obj) => _.reduce(obj, (json, value, key) => {
   };
 }, {});
 
-const formatStylish = (obj) => JSON.stringify(internalToJson(obj), null, 4)
+const formatStylish = (internalDiff) => JSON.stringify(internalToJson(internalDiff), null, 4)
   .replace(/[,"]/g, '')
   .split('\n')
   .map((line) => (/[+-]\s/.test(line) ? line.substring(2) : line))
