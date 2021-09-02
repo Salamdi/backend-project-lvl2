@@ -3,7 +3,7 @@ import {
   REMOVED, ADDED, UPDATED, TYPE_KEY, NEW_KEY, OLD_KEY,
 } from './constants.js';
 
-const reduceProp = (prop1, prop2) => {
+const reduceProperty = (prop1, prop2) => {
   if (prop1 === prop2) return prop2;
   if (!_.isUndefined(prop1) && _.isUndefined(prop2)) {
     return {
@@ -37,7 +37,7 @@ const gendiff = (obj1, obj2, depth = 0) => {
     ...diff,
     [key]: (_.isObject(obj1[key]) && _.isObject(obj2[key]))
       ? gendiff(obj1[key], obj2[key], key + 1)
-      : reduceProp(obj1[key], obj2[key], depth),
+      : reduceProperty(obj1[key], obj2[key], depth),
   }), {});
 };
 
